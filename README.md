@@ -1,57 +1,87 @@
-# 🚀 Getting started with Strapi
+# 📄 SponsoredGigs Content Management System (CMS)
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html) (CLI) which lets you scaffold and manage your project in seconds.
+Welcome to SponsoredGigs CMS! This is an integral part of the SponsoredGigs ecosystem, designed specifically to manage jobs, and posts, and the admin panel user data with ease.
 
-### `develop`
+Built on the robust Strapi framework, this CMS offers a feature-rich platform for content management, complete with a RESTful API for interacting with different data collections, a GraphQL API for advanced querying, and even a webhook setup for seamless content updates.
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-develop)
+For more technical details of Strapi, check out the [official documentation](https://docs.strapi.io).
 
-```
+## 💡 How to Use
+### Interacting with the REST API
+Below are the key RESTful operations you can perform on the `jobs`, `posts`, and `users` endpoints:
+
+| Endpoint | Operation | Description |
+| :--- | :--- | :--- |
+| `/api/:jobs` | GET | Fetch a list of jobs |
+| `/api/:jobs` | POST | Create a new job entry |
+| `/api/:jobs/:documentId` | GET | Retrieve a specific job entry |
+| `/api/:jobs/:documentId` | PUT | Update a specific job entry |
+| `/api/:jobs/:documentId` | DELETE | Delete a specific job entry |
+| `/api/:posts` | GET | Retrieve a list of posts |
+| `/api/:posts` | POST | Create a new post entry |
+| `/api/:posts/:documentId` | GET | Fetch a specific post entry |
+| `/api/:post/:documentId` | PUT | Update a specific post entry |
+| `/api/:post/:documentId` | DELETE | Delete a specific post entry |
+| `/api/:users` | GET | Retrieve a list of Strapi users |
+| `/api/:users` | POST | Create a new Strapi user entry |
+| `/api/:users/:documentId` | GET | Fetch a specific Strapi user entry |
+| `/api/:user/:documentId` | PUT | Update a specific Strapi user entry |
+| `/api/:user/:documentId` | DELETE | Delete a specific Strapi user entry |
+
+### Querying the GraphQL API
+Our CMS also provides a GraphQL API. To learn more about this, run the development build on your local machine and navigate to `/graphql`.
+
+### Implementing the Webhook
+The CMS will trigger a new static site generation for [SponsoredGigs.com](https://www.sponsoredgigs.com) whenever there's any content update.
+
+## 🛠️ Getting Started with Development
+Here is how to start the CMS on your local machine with auto-reload enabled, then build and serve the CMS:
+
+```sh
+# Start a development server with auto-reload
 npm run develop
 # or
 yarn develop
-```
 
-### `start`
-
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-start)
-
-```
-npm run start
+# Build and serve CMS (auto-reload disabled)
+npm run build && npm run start
 # or
-yarn start
+yarn build && yarn start
 ```
 
-### `build`
+## 🚀 Continuous Integration and Delivery (CI/CD)
+Each push to the `main` branch triggers the [publish workflow](.github/workflows/publish-ghcr.yaml), which builds and pushes a Docker image to a private registry. The CMS server then picks up this new build and updates itself with the latest image version.
 
-Build your admin panel. [Learn more](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html#strapi-build)
+## 📋 Collection Schemas
+Below are the schemas for the `Job`, `Post`, and `User` collections:
 
-```
-npm run build
-# or
-yarn build
-```
+### 📂 Job
+| Field | Required | Description |
+| :--- | :---: | :--- |
+| `title` | Yes | Job title |
+| `level` | Yes | Job level: Internship, Entry Level, Associate, Mid-Senior Level, Director, Executive, Other |
+| `industry` | Yes | Job industry: Information Technology, Healthcare and Medical Services, Education and Training, etc. |
+| `url` | Yes | Job application URL |
+| `description` | No | Job description |
+| `company` | Yes | Hiring company |
+| `companyUrl` | Yes | Hiring company's profile URL |
+| `location` | Yes | Job location |
+| `salary` | No | Job salary |
 
-## ⚙️ Deployment
+### 📄 Post
+| Field | Required | Description |
+| :--- | :---: | :--- |
+| `title` | No | Post title |
+| `content` | No | Post content |
+| `media` | No | Post illustration |
+| `slug` | No | URL path to the post |
+| `minutesToRead` | No | Estimated read time (in minutes) |
+| `author` | No | Post author (linked to `User` entity) |
 
-Strapi gives you many possible deployment options for your project. Find the one that suits you on the [deployment section of the documentation](https://docs.strapi.io/developer-docs/latest/setup-deployment-guides/deployment.html).
-
-## 📚 Learn more
-
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://docs.strapi.io) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
-
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
-
-## ✨ Community
-
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
-
----
-
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+### 👥 User
+| Field | Required | Description |
+| :--- | :---: | :--- |
+| `username` | Yes | User's full name |
+| `email` | Yes | User's email |
+| `avatar` | No | User's profile picture |
+| `role` | Yes | User role: Public, Authenticated |
