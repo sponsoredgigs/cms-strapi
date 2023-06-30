@@ -1,0 +1,91 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jobs",
+  "info": {
+    "singularName": "job",
+    "pluralName": "jobs",
+    "displayName": "Job",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "level": {
+      "type": "enumeration",
+      "enum": [
+        "Internship",
+        "Entry Level",
+        "Associate",
+        "Mid-Senior Level",
+        "Director",
+        "Executive",
+        "Other"
+      ],
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Full Time",
+        "Part Time",
+        "Contract",
+        "Casual/Vacation",
+        "Temporary",
+        "Other"
+      ],
+      "required": true
+    },
+    "industry": {
+      "type": "enumeration",
+      "enum": [
+        "Information Technology",
+        "Healthcare and Medical Services",
+        "Education and Training",
+        "Finance and Banking",
+        "Manufacturing and Production",
+        "Retail and Consumer Goods",
+        "Hospitality and Tourism",
+        "Construction and Engineering",
+        "Marketing and Advertising",
+        "Media and Entertainment",
+        "Consulting and Professional Services",
+        "Non-profit and Social Services",
+        "Transportation and Logistics",
+        "Energy and Utilities",
+        "Administration and Office Support",
+        "Government and Public Administration",
+        "Other"
+      ],
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "regex": "\\b((?:https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*)\\b",
+      "required": true
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "company": {
+      "type": "string",
+      "required": true
+    },
+    "companyUrl": {
+      "type": "string",
+      "regex": "\\b((?:https?|ftp):\\/\\/[^\\s/$.?#].[^\\s]*)\\b"
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "salary": {
+      "type": "string"
+    }
+  }
+}
