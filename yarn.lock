@@ -3179,7 +3179,7 @@
   resolved "https://registry.yarnpkg.com/@strapi/provider-audit-logs-local/-/provider-audit-logs-local-4.11.3.tgz#5b8cdbbf84e423981bed5228c158ce38113ca9d0"
   integrity sha512-fgqE0QUN8QN655bHjFz4erZKnZ29YKMwkYYYOubVv5ifT9bv7rSdqlioQ/padUM5PoROrNulKgSzkdNw4YFYwg==
 
-"@strapi/provider-email-sendmail@4.11.3":
+"@strapi/provider-email-sendmail@4.11.3", "@strapi/provider-email-sendmail@^4.11.3":
   version "4.11.3"
   resolved "https://registry.yarnpkg.com/@strapi/provider-email-sendmail/-/provider-email-sendmail-4.11.3.tgz#1006ecde02f6bdff0d43ba2b9d2e59d62878bcd8"
   integrity sha512-y2kuR9YiA7zZ4HvWUXO1BPXMmxSeE1gQ1uko2EI5+Mhhvb0aujuGLaLfHU0OLLLM6aIIKUS24emtINYY4ngwvQ==

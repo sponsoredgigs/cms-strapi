@@ -30,4 +30,17 @@ export default ({ env }) => ({
       },
     },
   },
+  email: {
+    provider: "sendmail",
+    providerOptions: {
+      dkim: {
+        privateKey: env("DKIM_PRIVATE_KEY"),
+        keySelector: env("DKIM_KEY_SELECTOR"),
+      },
+    },
+    settings: {
+      defaultFrom: "cms@sponsoredgigs.com",
+      defaultReplyTo: "cms@sponsoredgigs.com",
+    },
+  },
 });
