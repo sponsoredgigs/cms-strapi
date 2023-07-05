@@ -1,6 +1,6 @@
 # 📄 SponsoredGigs Content Management System (CMS)
 
-Welcome to SponsoredGigs CMS! This is an integral part of the SponsoredGigs ecosystem, designed specifically to manage jobs, and posts, and the admin panel user data with ease.
+Welcome to SponsoredGigs CMS! This is an integral part of the SponsoredGigs ecosystem, designed specifically to manage jobs, posts, and the admin panel user data with ease.
 
 Built on the robust Strapi framework, this CMS offers a feature-rich platform for content management, complete with a RESTful API for interacting with different data collections, a GraphQL API for advanced querying, and even a webhook setup for seamless content updates.
 
@@ -31,26 +31,8 @@ Below are the key RESTful operations you can perform on the `jobs`, `posts`, and
 ### Querying the GraphQL API
 Our CMS also provides a GraphQL API. To learn more about this, run the development build on your local machine and navigate to `/graphql`.
 
-### Implementing the Webhook
+### Webhook
 The CMS will trigger a new static site generation for [SponsoredGigs.com](https://www.sponsoredgigs.com) whenever there's any content update.
-
-## 🛠️ Getting Started with Development
-Here is how to start the CMS on your local machine with auto-reload enabled, then build and serve the CMS:
-
-```sh
-# Start a development server with auto-reload
-npm run develop
-# or
-yarn develop
-
-# Build and serve CMS (auto-reload disabled)
-npm run build && npm run start
-# or
-yarn build && yarn start
-```
-
-## 🚀 Continuous Integration and Delivery (CI/CD)
-Each push to the `main` branch triggers the [publish workflow](.github/workflows/publish-ghcr.yaml), which builds and pushes a Docker image to a private registry. The CMS server then picks up this new build and updates itself with the latest image version.
 
 ## 📋 Collection Schemas
 Below are the schemas for the `Job`, `Post`, and `User` collections:
@@ -71,12 +53,12 @@ Below are the schemas for the `Job`, `Post`, and `User` collections:
 ### 📄 Post
 | Field | Required | Description |
 | :--- | :---: | :--- |
-| `title` | No | Post title |
-| `content` | No | Post content |
+| `title` | Yes | Post title |
+| `content` | Yes | Post content |
 | `media` | No | Post illustration |
-| `slug` | No | URL path to the post |
-| `minutesToRead` | No | Estimated read time (in minutes) |
-| `author` | No | Post author (linked to `User` entity) |
+| `slug` | Yes | URL path to the post |
+| `minutesToRead` | Yes | Estimated read time (in minutes) |
+| `author` | Yes | Post author (linked to `User` entity) |
 
 ### 👥 User
 | Field | Required | Description |
@@ -85,3 +67,32 @@ Below are the schemas for the `Job`, `Post`, and `User` collections:
 | `email` | Yes | User's email |
 | `avatar` | No | User's profile picture |
 | `role` | Yes | User role: Public, Authenticated |
+
+
+## 🛠️ Getting Started with Development
+Here is how to start the CMS on your local machine with auto-reload enabled, then build and serve the CMS:
+
+```sh
+# Start a development server with auto-reload
+npm run develop
+# or
+yarn develop
+
+# Build and serve CMS (auto-reload disabled)
+npm run build && npm run start
+# or
+yarn build && yarn start
+```
+
+Schema migration and plugins installation can only be done on the development server.
+
+### Plugins installed
+- [GraphQL](https://market.strapi.io/plugins/@strapi-plugin-graphql) - GraphQL API
+- [Cloudinary](https://market.strapi.io/providers/@strapi-provider-upload-cloudinary) - Media storage
+- [CKEditor](https://market.strapi.io/plugins/@ckeditor-strapi-plugin-ckeditor) - Rich text editor
+- [Sendmail](https://www.npmjs.com/package/@strapi/provider-email-sendmail) - Email notifications for account registration and password reset
+- [Users & Permissions](https://www.npmjs.com/package/@strapi/plugin-users-permissions) - User authentication and authorization
+- [i18n](https://market.strapi.io/plugins/@strapi-plugin-i18n) - Internationalization
+
+## 🚀 Continuous Integration and Delivery (CI/CD)
+Each push to the `main` branch triggers the [publish workflow](.github/workflows/publish-ghcr.yaml), which builds and pushes a Docker image to a private registry. The CMS server then picks up this new build and updates itself with the latest image version.
